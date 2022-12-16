@@ -3,7 +3,8 @@ def plot_training(training_losses,
                   learning_rate,
                   gaussian=True,
                   sigma=2,
-                  figsize=(8, 6)
+                  figsize=(8, 6),
+                  setup= "Default"
                   ):
     """
     Returns a loss plot with training loss, validation loss and learning rate.
@@ -52,7 +53,7 @@ def plot_training(training_losses,
     if gaussian:
         subfig1.plot(x_range, training_losses_gauss, '-', color=color_smooth_train, label='Training', alpha=0.75)
         subfig1.plot(x_range, validation_losses_gauss, '-', color=color_smooth_valid, label='Validation', alpha=0.75)
-    subfig1.title.set_text('Training & validation loss')
+    subfig1.title.set_text('Training & validation loss '+setup)
     subfig1.set_xlabel('Epoch')
     subfig1.set_ylabel('Loss')
 
@@ -60,7 +61,7 @@ def plot_training(training_losses,
 
     # Subfig 2
     subfig2.plot(x_range, learning_rate, color='black')
-    subfig2.title.set_text('Training Time')
+    subfig2.title.set_text('Training Time '+setup)
     subfig2.set_xlabel('Epoch')
     subfig2.set_ylabel('s')
 

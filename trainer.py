@@ -4,6 +4,8 @@ import numpy as np
 import torch
 from torch.utils.data import Dataset
 from time import time
+from fairscale.optim.oss import OSS
+from fairscale.nn.data_parallel import ShardedDataParallel as ShardedDDP
 
 
 class Trainer:
@@ -19,11 +21,15 @@ class Trainer:
         epochs: int = 100,
         epoch: int = 0,
         notebook: bool = False,
+        sharding: bool = False
     ):
 
         self.model = model
         self.criterion = criterion
         self.optimizer = optimizer
+        if sharding == True:
+            base_optimizer_arguments = { "lr": 1e-4}
+            self.optimizer = OSS(params=model.parameters(), optim= torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9))
         self.lr_scheduler = lr_scheduler
         self.training_dataloader = training_dataloader
         self.validation_dataloader = validation_dataloader
