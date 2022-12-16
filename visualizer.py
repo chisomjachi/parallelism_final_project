@@ -62,6 +62,6 @@ def plot_training(training_losses,
     subfig2.plot(x_range, learning_rate, color='black')
     subfig2.title.set_text('Training Time')
     subfig2.set_xlabel('Epoch')
-    subfig2.set_ylabel('LR')
+    subfig2.set_ylabel('s')
 
     return fig
