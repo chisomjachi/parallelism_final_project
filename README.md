@@ -46,3 +46,28 @@ Model Parallelism & Single GPU & Pipeline Parallelism on CIFAR-10 (Batch Size:12
 Training Time & Split Size on Pipeline Parallelism
 
 ![Unknown-2](https://user-images.githubusercontent.com/44592326/208522561-25dd3f2c-4412-4e6b-be1a-fd498f372175.png)
+
+
+## Second Part - Data Parallelism and Optimizer State Sharding
+In this section of the code, we also process CIFAR10 data using the torch multiprocessing training framework. Each experiment is outlined within its own python script. The script: `run_just_gpu.py` is run on both a single GPU and a machine with 4 GPUs
+
+Additionally, the script `ddp.py` runs the training with just ddp. Finally, the script `ddp_with_sharding.py` runs the ddp script with sharding. 
+
+### Commands
+run the files as stated above in terminal. for example, run `python ddp.py epochs=100`.
+
+
+### Results
+
+The models and frameworks are evaluated on avg run time for one epoch and number of epochs to converge. the results of each experiment are outlined below:
+
+Training Time and Avg Run time of one epoch for 4 GPU:
+
+![just-gpu](https://github.com/chisomjachi/parallelism_final_project/blob/main/just_gpu.png?raw=True)
+
+Training Time and average run time of one epoch with DDP:
+
+![ddp](https://github.com/chisomjachi/parallelism_final_project/blob/main/ddp.png?raw=True)
+
+Training Time and average run time of one epoch with DDP with sharding:
+![ddp-with-sharding](https://github.com/chisomjachi/parallelism_final_project/blob/main/ddp_with_sharding.png?raw=True)
